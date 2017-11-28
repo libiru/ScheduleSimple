@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.lneves.lista.model.Student;
+
 public class FormActivity extends AppCompatActivity {
 
     EditText mName;
@@ -20,17 +22,15 @@ public class FormActivity extends AppCompatActivity {
     EditText mAddress;
     RatingBar mRating;
     Button mButton;
+    private FormHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-       /* EditText mName = (EditText) findViewById(R.id.name_id);
-        EditText mPhone = (EditText) findViewById(R.id.phone_id);
-        EditText mSite = (EditText) findViewById(R.id.site_id);
-        EditText mAddress = (EditText) findViewById(R.id.address_id);
-        RatingBar mRating = (RatingBar) findViewById(R.id.rating_bar_id);
-        Button mButton = (Button) findViewById(R.id.button_save_id);*/
+
+         helper = new FormHelper(this);
+
 
 
            }
@@ -45,7 +45,9 @@ public class FormActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_form:
-                Toast.makeText(FormActivity.this, "Salvar", Toast.LENGTH_SHORT).show();
+
+                Student student = helper.getStudent();
+                Toast.makeText(FormActivity.this, "Aluno" + student.getName()+ "Salvo", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
 

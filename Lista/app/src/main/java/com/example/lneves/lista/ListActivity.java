@@ -16,6 +16,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         String[] alunos = {"Label1","Label2", "Label3"};
 
             ListView listStudents = (ListView) findViewById(R.id.list_students);
