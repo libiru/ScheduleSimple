@@ -14,7 +14,7 @@ public class FormHelper {
     private final EditText addressField;
     private final EditText siteField;
     private final EditText phoneField;
-    private final RatingBar avaliationField;
+    private final RatingBar evaluationField;
     private final EditText nameField;
 
 
@@ -23,7 +23,7 @@ public class FormHelper {
         addressField = (EditText) activity.findViewById(R.id.address_id);
         siteField = (EditText) activity.findViewById(R.id.site_id);
         phoneField = (EditText) activity.findViewById(R.id.phone_id);
-        avaliationField = (RatingBar) activity.findViewById(R.id.rating_bar_id);
+        evaluationField = (RatingBar) activity.findViewById(R.id.rating_bar_id);
     }
 
     public Student getStudent() {
@@ -33,7 +33,7 @@ public class FormHelper {
         student.setAddress(addressField.getText().toString());
         student.setPhone(phoneField.getText().toString());
         student.setSite(siteField.getText().toString());
-        student.setAvaliation(Double.valueOf(avaliationField.getProgress()));
+        student.setAvaliation(Double.valueOf(evaluationField.getProgress()));
         return null;
     }
 }
