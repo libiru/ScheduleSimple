@@ -16,19 +16,22 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        String[] alunos = {"Label1", "Label2", "Label3"};
 
-        String[] alunos = {"Label1","Label2", "Label3"};
-
-            ListView listStudents = (ListView) findViewById(R.id.list_students);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,alunos);
+        ListView listStudents = (ListView) findViewById(R.id.list_students);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alunos);
         listStudents.setAdapter(adapter);
 
+        //botao
         Button newStudent = (Button) findViewById(R.id.button_save_id);
-        newStudent.setOnClickListener(new View.OnClickListener(){
+        //acao ao botao
+        newStudent.setOnClickListener(new View.OnClickListener() {
+
+            //navegacao entre telas
             @Override
             public void onClick(View v) {
-                Intent intentForm = new Intent(ListActivity.this, FormActivity.class);
 
+                Intent intentForm = new Intent(ListActivity.this, FormActivity.class);
             }
 
 

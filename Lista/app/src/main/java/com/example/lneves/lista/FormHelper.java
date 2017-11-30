@@ -9,6 +9,7 @@ import com.example.lneves.lista.model.Student;
  * Created by lneves on 11/28/2017.
  */
 
+        //auxiliar do formulario
 public class FormHelper {
 
     private final EditText addressField;
@@ -17,8 +18,8 @@ public class FormHelper {
     private final RatingBar evaluationField;
     private final EditText nameField;
 
-
-    public FormHelper(FormActivity activity){
+    //parametros para referenciar activity Form
+    public FormHelper(FormActivity activity) {
         nameField = (EditText) activity.findViewById(R.id.address_id);
         addressField = (EditText) activity.findViewById(R.id.address_id);
         siteField = (EditText) activity.findViewById(R.id.site_id);
@@ -27,9 +28,9 @@ public class FormHelper {
     }
 
     public Student getStudent() {
+
         Student student = new Student();
-        
-        student.setName(nameField.getText().toString());
+        student.setName(nameField.getText().toString()); //converte edit para string
         student.setAddress(addressField.getText().toString());
         student.setPhone(phoneField.getText().toString());
         student.setSite(siteField.getText().toString());

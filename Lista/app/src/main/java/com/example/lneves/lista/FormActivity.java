@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.lneves.lista.dao.StudentDAO;
 import com.example.lneves.lista.model.Student;
 
 public class FormActivity extends AppCompatActivity {
@@ -29,25 +30,31 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-         helper = new FormHelper(this);
+        //instanciando formHelper
+        //alt+enter e criar field
+        helper = new FormHelper(this);
 
 
-
-           }
-                @Override
-                public boolean onCreateOptionsMenu(Menu menu) {
-                   MenuInflater inflater= getMenuInflater();
-                    inflater.inflate(R.menu.main_menu, menu);
-                    return super.onCreateOptionsMenu(menu);
-                }
+    }
+    //Utilizando menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_form:
+        //distinção para que outros menus nao tenham msm comportamento
+        switch (item.getItemId()) {
 
-                Student student = helper.getStudent();
-                Toast.makeText(FormActivity.this, "Aluno" + student.getName()+ "Salvo", Toast.LENGTH_SHORT).show();
+            case R.id.menu_form:
+                //utilizando helper
+                Student student = helper.getStudent();//metodo devolve objeto student que contem os dados
+                //instanciar o obj dao
+                StudentDAO dao = new StudentDAO(this);
+                Toast.makeText(FormActivity.this, "Aluno" + student.getName() + "Salvo", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
 

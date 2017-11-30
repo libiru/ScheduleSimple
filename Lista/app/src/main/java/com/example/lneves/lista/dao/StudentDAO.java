@@ -22,9 +22,17 @@ public class StudentDAO extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {  //versaoBD
         String sql = "DROP TABLE IF EXITS Students";
         db.execSQL(sql);
         onCreate(db);
     }
+
+    public void insert(Student student) {
+        
+        SQLiteDatabase db = getWritableDatabase();
+
+
+    }
+
 }
