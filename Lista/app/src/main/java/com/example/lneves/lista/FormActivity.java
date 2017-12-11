@@ -32,7 +32,7 @@ public class FormActivity extends AppCompatActivity {
 
         //instanciando formHelper
         //alt+enter e criar field
-        helper = new FormHelper(this);
+        this.helper = new FormHelper(this);
 
 
     }
@@ -50,11 +50,18 @@ public class FormActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.menu_form:
+                EditText editTextName = (EditText) findViewById(R.id.name_id);
+                if (editTextName.length() == 0){
+                    Toast.makeText(this,"Preencha o nome", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
                 //utilizando helper
                 Student student = helper.getStudent();//metodo devolve objeto student que contem os dados
-                //instanciar o obj dao
+                //instanciar  dao e insere o novo aluno no banco
                 StudentDAO dao = new StudentDAO(this);
-                Toast.makeText(FormActivity.this, "Aluno" + student.getName() + "Salvo", Toast.LENGTH_SHORT).show();
+                dao.insert(student);
+                dao.close(); //fecha conexao com BD
+                Toast.makeText(FormActivity.this, "Aluno " + student.getName() + " Salvo", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
 

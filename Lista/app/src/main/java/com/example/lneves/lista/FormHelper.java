@@ -20,11 +20,11 @@ public class FormHelper {
 
     //parametros para referenciar activity Form
     public FormHelper(FormActivity activity) {
-        nameField = (EditText) activity.findViewById(R.id.address_id);
-        addressField = (EditText) activity.findViewById(R.id.address_id);
-        siteField = (EditText) activity.findViewById(R.id.site_id);
-        phoneField = (EditText) activity.findViewById(R.id.phone_id);
-        evaluationField = (RatingBar) activity.findViewById(R.id.rating_bar_id);
+        this.nameField = (EditText) activity.findViewById(R.id.name_id);
+        this.addressField = (EditText) activity.findViewById(R.id.address_id);
+        this.siteField = (EditText) activity.findViewById(R.id.site_id);
+        this.phoneField = (EditText) activity.findViewById(R.id.phone_id);
+        this.evaluationField = (RatingBar) activity.findViewById(R.id.rating_bar_id);
     }
 
     public Student getStudent() {
@@ -35,6 +35,6 @@ public class FormHelper {
         student.setPhone(phoneField.getText().toString());
         student.setSite(siteField.getText().toString());
         student.setAvaliation(Double.valueOf(evaluationField.getProgress()));
-        return null;
+        return student;
     }
 }

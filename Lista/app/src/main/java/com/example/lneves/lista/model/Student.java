@@ -61,4 +61,9 @@ public class Student {
     public void setAvaliation(Double avaliation) {
         this.avaliation = avaliation;
     }
+
+    @Override
+    public String toString() {
+        return getId() + "-" + getName();
+    }
 }
