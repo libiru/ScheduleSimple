@@ -3,10 +3,14 @@ package com.example.lneves.lista;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.lneves.lista.dao.StudentDAO;
 import com.example.lneves.lista.model.Student;
@@ -35,6 +39,9 @@ public class ListActivity extends AppCompatActivity {
 
         });
 
+        //menu contexto ------------------------------------------
+        registerForContextMenu(listStudents);
+
     }
         //refactor > extract > method
     private void loadList() { //carrega lista
@@ -55,6 +62,26 @@ public class ListActivity extends AppCompatActivity {
         super.onResume();
         loadList();
     }
+
+            //DELETAR
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+       MenuItem deletar =  menu.add("Deletar"); //criar item
+        MenuItem menuItem = deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+
+                if (listStudents.getItemAtPosition(info.position) instanceof Student){
+                    Student student = (Student)listStudents.getItemAtPosition(info.position);
+                    Toast.makeText(ListActivity.this, "Deletar aluno" + student.getName(), Toast.LENGTH_SHORT).show();
+                }
+
+                return false;
+            }
+        });
+    }
+
 
     //Atualizar lista
    /* @Override
