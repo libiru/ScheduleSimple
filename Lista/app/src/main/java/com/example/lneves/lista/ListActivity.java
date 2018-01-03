@@ -28,6 +28,8 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
             Button newStudent = (Button) findViewById(R.id.new_student);
+
+
         //acao ao botao
         newStudent.setOnClickListener(new View.OnClickListener() {
 
@@ -39,6 +41,7 @@ public class ListActivity extends AppCompatActivity {
 
         });
 
+            loadList();
         //menu contexto ------------------------------------------
         registerForContextMenu(listStudents);
 
@@ -66,19 +69,27 @@ public class ListActivity extends AppCompatActivity {
             //DELETAR
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
-       MenuItem deletar =  menu.add("Deletar"); //criar item
-        MenuItem menuItem = deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+       MenuItem deletar =  menu.add("Deletar");  //referencia
+         deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 
-                if (listStudents.getItemAtPosition(info.position) instanceof Student){
+              //  if (listStudents.getItemAtPosition(info.position) instanceof Student){
                     Student student = (Student)listStudents.getItemAtPosition(info.position);
-                    Toast.makeText(ListActivity.this, "Deletar aluno" + student.getName(), Toast.LENGTH_SHORT).show();
+
+                    StudentDAO dao = new StudentDAO(ListActivity.this);
+                    dao.delete(student);
+                    dao.close();
+
+                    loadList();
+                    return false;
+
+                   // Toast.makeText(ListActivity.this, "Deletar aluno" + student.getName(), Toast.LENGTH_SHORT).show();
                 }
 
-                return false;
-            }
+
+            //}
         });
     }
 

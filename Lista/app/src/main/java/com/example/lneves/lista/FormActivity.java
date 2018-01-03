@@ -1,6 +1,7 @@
 package com.example.lneves.lista;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -46,15 +47,46 @@ public class FormActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String fieldsToFill = "";
+
         //distinção para que outros menus nao tenham msm comportamento
         switch (item.getItemId()) {
 
             case R.id.menu_form:
                 EditText editTextName = (EditText) findViewById(R.id.name_id);
-                if (editTextName.length() == 0){
-                    Toast.makeText(this,"Preencha o nome", Toast.LENGTH_SHORT).show();
+                if (editTextName.length() == 0) {
+                     fieldsToFill += "nome";
+                }
+
+                EditText address = (EditText) findViewById(R.id.address_id);
+                if (address.length() == 0) {
+
+                    if (fieldsToFill.length() > 0) fieldsToFill += ", ";
+                    fieldsToFill += "endereço";
+                }
+
+                EditText phone = (EditText) findViewById(R.id.phone_id);
+
+                if (phone.length() == 0){
+
+                    if (fieldsToFill.length() > 0) fieldsToFill += ", ";
+                    fieldsToFill += "telefone";
+                }
+
+                EditText site = (EditText) findViewById(R.id.site_id);
+
+                if (site.length() == 0) {
+                   if (fieldsToFill.length() > 0) fieldsToFill += ", ";
+                    fieldsToFill += "site";
+                }
+
+                if (fieldsToFill.length() > 0) {
+                    Toast.makeText(this, "Campos necessários: " + fieldsToFill, Toast.LENGTH_SHORT).show();
                     return false;
                 }
+
+
+
                 //utilizando helper
                 Student student = helper.getStudent();//metodo devolve objeto student que contem os dados
                 //instanciar  dao e insere o novo aluno no banco
