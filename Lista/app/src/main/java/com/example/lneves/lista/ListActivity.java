@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.lneves.lista.dao.StudentDAO;
 import com.example.lneves.lista.model.Student;
 
+import org.w3c.dom.ls.LSException;
+
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
@@ -27,9 +29,24 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+       listStudents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> list, View item, int position, long id) {
+               Student student = (Student) listStudents.getItemAtPosition(position);
+               Toast.makeText(ListActivity.this, "Aluno" + student.getName() + "clicado!", Toast.LENGTH_SHORT).show();
+
+           }
+       });
+        // clique longo
+        listStudents.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> listt, View item, int position, long id) {
+                Toast.makeText(ListActivity.this, "Click", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
             Button newStudent = (Button) findViewById(R.id.new_student);
-
-
         //acao ao botao
         newStudent.setOnClickListener(new View.OnClickListener() {
 
